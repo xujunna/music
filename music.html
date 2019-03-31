@@ -526,17 +526,21 @@
     }
 
 
-    window.addEventListener('keydown',function (e) {
-        //检测按下了那个键
-        //空格
-        console.log(e.keyCode);
-        if(e.keyCode == 32){
-            $('.start').click();
+    window.addEventListener('keypress',function (event) {
+        var e = window.event || event;
+        if(e.preventDefault){
+            e.preventDefault();
+            if(event.keyCode==32){
+                $('.start').click();
+            }
+        }else{
+            window.event.returnValue = false;
         }
-    })
+    });
 
 
-     window.addEventListener('keydown',function (e) {
+
+    window.addEventListener('keydown',function (e) {
        //检测按下了那个键
          //回车
         console.log(e.keyCode);
@@ -544,8 +548,25 @@
              $('#searchBtn').click();
          }
     })
+    window.addEventListener('keydown',function (e) {
+        //检测按下了那个键
+        //回车
+        console.log(e.keyCode);
+        if(e.keyCode == 37){
+            $('.shang').click();
+        }
+    })
+    window.addEventListener('keydown',function (e) {
+        //检测按下了那个键
+        //回车
 
-   
+        if(e.keyCode == 39){
+            $('.xia').click();
+        }
+    })
+
+
+
 </script>
 </body>
 </html>
