@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    body{
+        background-color: paleturquoise;
+    }
+        .Flex-color-Special
+        {
+            text-shadow: 0 0 10px #fff,
+            0 0 20px  #fff,
+            0 0 30px  #fff,
+            0 0 40px  #00c0ef,
+            0 0 70px  #00c0ef,
+            0 0 80px  #00c0ef,
+            0 0 100px #00c0ef,
+            0 0 150px #00c0ef;
+            font-size: 80px;
+
+        }
+        .d2{
+            width: 200px;
+            margin: 70px 200px;
+            font-size: 20px;
+            text-shadow: 0 0 10px #fff,
+            0 0 20px  #fff,
+            0 0 30px  #fff;
+
+
+
+        }
+        .d1{
+            width: 80%;
+            margin: 250px 500px;
+        }
+        @-webkit-keyframes fadeIn {
+            0% {
+                opacity: 0.1; /*初始状态 透明度为0*/
+            }
+            50% {
+                opacity: 0.5; /*中间状态 透明度为0*/
+            }
+            100% {
+                opacity: 1; /*结尾状态 透明度为1*/
+            }
+        }
+        .Flex-fadeIn {
+        -webkit-animation-name: fadeIn; /*动画名称*/
+        -webkit-animation-duration: 8s; /*动画持续时间*/
+        -webkit-animation-iteration-count: infinite; /*动画次数 infinite 为无限 否则就是具体次数*/
+        -webkit-animation-delay: 0s;
+    }
+    a {
+        -webkit-animation-name: fadeIn; /*动画名称*/
+        -webkit-animation-duration: 8s; /*动画持续时间*/
+
+        -webkit-animation-delay: 0s;
+    }
+
+    </style>
+</head>
+<body>
+<div class="d1">
+<span   class="margin Flex-color-Special Flex-fadeIn"> 欢迎进入Hey音乐</span>
+    <div class="d2">
+    <span   class=""><a href="music.html">点击进入</a></span>
+    </div>
+</div>
+</body>
+</html>

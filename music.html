@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+
+            width: 100%;
+            height: 100%;
+            background-color: paleturquoise;
+
+
+
+
+        }
+        .box{
+
+            width: 600px;
+
+            padding: 30px;
+            background: url("音乐/bgImg.png") repeat-y;
+            border: 1px dashed deepskyblue;
+            margin: 50px auto;
+
+
+
+        }
+        .ctr-box{
+            width: 100%;
+
+            display: flex;
+        }
+        .ctr-pic{
+            width: 200px;
+
+        }
+        .ctr-pic img{
+            width: 100%;
+            height: 200px;
+            border-radius: 50%;
+
+
+        }
+        .ctr-head{
+            width: 400px;
+
+            height: 200px;
+        }
+        .song{
+            margin: 30px 20px;
+            font-size: 20px;
+            color: grey;
+
+        }
+        .bar{
+            width: 300px;
+            position: relative;
+            margin: 30px 20px;
+        }
+        .bar-box{
+            width: 300px;
+            height: 6px;
+
+
+        }
+        .sum{
+            width: 313px;
+            height: 6px;
+            background-color: grey;
+            position: absolute;
+            top:0px;
+            left: 0px;
+        }
+        .now{
+            width: 0px;
+            height: 6px;
+            background-color: lightcoral;
+            position: absolute;
+            top:0px;
+            left: 0px;
+        }
+        .yuan{
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color:antiquewhite;
+            position: absolute;
+            top:-6px;
+            left: -3px;
+        }
+       .time{
+            margin: 0px 250px;
+            font-size: 20px;
+           color: grey;
+        }
+
+       .button{
+           display: flex;
+           margin: 30px 20px 20px 20px;
+           display: flex;
+           justify-content: space-between;
+       }
+        .button div{
+            width: 50px;
+            height: 60px;
+            background: url("音乐/222.png") no-repeat;
+        }
+        .button .shang{
+            width:24px;
+            height: 24px;
+          background-position-y: -28px;
+        }
+        .button .start{
+            width: 30px;
+            height: 29px;
+            background-position-y: -1px;
+        }
+        .button .xia{
+            width: 40px;
+            height: 25px;
+            background-position-y: -50px;
+        }
+        .button .like{
+            width: 30px;
+            height: 25px;
+            background-position: 0px  -94px;
+
+
+        }
+        .button .xunhuan{
+            width: 55px;
+            height: 24px;
+            background-position-y: -206px;
+        }
+
+        .button .yinliang{
+            width: 63px;
+            height: 26px;
+            background-position-y: -144px;
+        }
+        .list-box{
+            width: 100%;
+            padding: 30px;
+
+            box-sizing: border-box;
+        }
+        ul{
+            list-style: none;
+        }
+        li{
+            line-height: 40px;
+            height: 40px;
+            display: flex;
+            color: black;
+            border-bottom: 1px dashed  grey;
+            justify-content: space-between;
+        }
+        .active{
+          background-color:gainsboro;
+        }
+        .d {
+            width: 250px;
+            padding: 20px;
+            margin: 100px auto;
+
+        }
+        #searchTxt{
+
+            height:30px ;
+            font-size: 15px;
+            background-color: paleturquoise;
+            color: gray;
+        }
+        #searchBtn{
+            width: 50px;
+            height:50px ;
+            border-radius: 50%;
+            color: gray;
+            background-color: paleturquoise;
+            font-size: 15px;
+
+        }
+        .q{
+            margin: 20px 5px;
+            font-size: 30px;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+<div class="d">
+    <p class="q">欢迎来到Hey音乐</p>
+<input type="text" id="searchTxt" value="我" size="">
+<button id="searchBtn">搜索</button>
+
+</div>
+
+
+
+
+
+
+<!--大盒子-->
+<div class="box">
+    <!--控制组件盒子-->
+    <div class="ctr-box">
+        <!--专辑封面-->
+        <div class="ctr-pic">
+            <img src="音乐/woceng.jpg">
+        </div>
+
+        <div class="ctr-head">
+            <div class="song">
+                <span>歌名-----歌手</span>
+            </div>
+            <div class="bar">
+                <div class="bar-box">
+                    <div class="sum"></div>
+                    <div class="now"></div>
+                    <div class="yuan"></div>
+                </div>
+                <p class="time">
+                    <span class="current">00:00</span>/<span class="totalTime">00:00</span>
+                </p>
+            </div>
+
+
+            <div class="button">
+                <div class="shang"></div>
+                <div class="start"></div>
+                <div class="xia"></div>
+                <div class="like"></div>
+                <div class="xunhuan"></div>
+
+                <div class="yinliang"></div>
+            </div>
+
+        </div>
+    </div>
+    <!--音乐列表盒子-->
+    <div class="list-box">
+        <ul>
+
+        </ul>
+
+    </div>
+</div>
+
+
+<audio></audio>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+
+
+<script>
+    //用来保存歌曲数据
+    //歌名  歌手名  专辑封面   歌曲播放地址
+    var data=[];
+    //获取元素
+    var audio=document.querySelector("audio");
+    var pic=document.querySelector('.ctr-pic img');
+    var song=document.querySelector('.song span');
+    var start=document.querySelector('.button .start');
+    var shang=document.querySelector('.button .shang');
+    var xia=document.querySelector('.button .xia');
+    var currentTime=document.querySelector('.time .current');
+    var totalTime=document.querySelector('.time .totalTime');
+    var barBox=document.querySelector('.bar-box');
+    var ctrBar=document.querySelector('.yuan');
+    var now=document.querySelector('.now');
+    var xunhuan=document.querySelector('.xunhuan');
+    var listBox=document.querySelector('.list-box ul');
+    var like=document.querySelector('.like');
+    var yinliang=document.querySelector('.yinliang');
+    var searchBtn=document.querySelector('#searchBtn');
+    var searchTxt=document.querySelector('#searchTxt');
+    var lis = null;
+
+   searchBtn.addEventListener('click',function () {
+      //搜索音乐列表
+      //进行Ajax请求
+        $.ajax({
+            url:'https://api.imjad.cn/cloudmusic/',
+            data:{
+                type:'search',
+                s:searchTxt.value
+            },
+            type:'get',
+            success:function (data1) {
+
+                data = data1.result.songs;
+
+                var str='';
+                for(var i=0;i<data.length;i++){
+
+                    str +='<li>'+data[i].name+'</span><span>';
+
+                    // console.log(data[i].ar);
+                    for(var j=0;j < data[i].ar.length;j++){
+                        str +=data[i].ar[j].name+'  ';
+                    }
+                    str +='</span></li>';
+
+                }
+                listBox.innerHTML = str;
+                lis=document.querySelectorAll('li');
+
+
+
+
+            },
+            error:function (err) {
+                console.log(err);
+            }
+
+        });
+
+   });
+
+
+
+
+
+
+    //标识当前第几首首歌
+    var index=0;
+    //旋转角度
+    var rotateDeg=0;
+    //保存定时器
+    var timer=null;
+    //标识当前播放模式  0代表顺序，1代表单曲，2代表随机
+    var mode=0;
+    //标识当前的喜欢与否 0代表不喜欢 1代表喜欢
+    var likeM=0;
+
+
+    //保存图片的positionY的值   循环，顺序，随机
+    var modeArr=[-206,-232,-72];
+    xunhuan.addEventListener('click',function () {
+        mode=mode++ > modeArr.length - 1 ? 0 :mode;
+        xunhuan.style.backgroundPositionY=modeArr[mode]+'px';
+    });
+   // 保存图片的positionX的值   喜欢，不喜欢
+    var likeMArr=[-30,0];
+    like.addEventListener('click',function () {
+        likeM=likeM++ > likeMArr.length - 1 ? 0:likeM;
+        like.style.backgroundPositionX = likeMArr[likeM]+'px';
+    });
+
+
+
+
+    //事件委托，把li委托给ul
+    $('.list-box ul').on('click','li',function () {
+        index=$(this).index();
+        audio.src='http://music.163.com/song/media/outer/url?id='+data[index].id+'.mp3';
+        init();
+        play();
+
+
+
+    });
+
+
+
+
+
+
+    // 创建一个init方法
+    function init(){
+        rotateDeg=0;
+        // 初始化专辑封面，歌手名，歌曲名，播放路径，播放时间
+        // pic.src=data[index].pic;
+        // audio.src=data[index].url;
+        var songStr=' ';
+        for(var j=0;j < data[index].ar.length;j++){
+            songStr +=data[index].ar[j].name+'  ';
+        }
+        // str +='</span></li>';
+         song.innerHTML=data[index].name+'---'+songStr;
+
+
+    //     // 切换列表选中项
+        for(var i = 0; i < data.length; i++){
+            lis[i].className = '';
+        }
+        lis[index].className = 'active';
+    }
+
+
+    // init();
+    //播放暂停
+    function play(){
+        pic.src = data[index].al.picUrl;
+
+        //播放音乐
+        audio.play();
+        //播放按钮变成暂停
+        start.style.backgroundPositionX=-30+'px';
+
+        //让专辑封面旋转
+        //在开启一个新的定时器之前，先清除上一个定时器
+        clearInterval(timer);
+        timer = setInterval(function () {
+            rotateDeg++;
+            pic.style.transform = 'rotate('+rotateDeg+'deg)';
+        },30);
+    }
+
+    //播放
+    start.addEventListener('click',function () {
+        //audio.paused当为true的时候暂停
+        if(audio.paused){
+          play();
+        }else {
+            // //音乐暂停
+            audio.pause();
+            // //播放按钮变成播放
+            start.style.backgroundPositionX=0+'px';
+            // //清除定时器
+             clearInterval(timer);
+        }
+    });
+
+    //上一曲
+    shang.addEventListener('click',function () {
+        //三元运算符
+        index = --index < 0 ? data.length-1 : index;
+        audio.src='http://music.163.com/song/media/outer/url?id='+data[index].id+'.mp3';
+        init();
+        play();
+    });
+    //下一曲
+    xia.addEventListener('click',function () {
+        //三元运算符
+        index = ++index > data.length - 1 ? 0 : index;
+        audio.src='http://music.163.com/song/media/outer/url?id='+data[index].id+'.mp3';
+        init();
+        play();
+    });
+
+
+    //canplay当音频文件准备完成后，触发canplay事件
+    audio.addEventListener('canplay',function () {
+
+        //需要将音乐时长转换为分钟数和秒数
+        var min=parseInt(audio.duration / 60);
+        var se=parseInt(audio.duration % 60);
+        totalTime.innerHTML=formatTime(min)+':'+formatTime(se);
+
+        audio.addEventListener('timeupdate',function () {
+            var currentMin=parseInt(audio.currentTime / 60);
+            var currentSe=parseInt(audio.currentTime % 60);
+            currentTime.innerHTML=formatTime(currentMin)+':'+formatTime(currentSe);
+
+            var lift=audio.currentTime /audio.duration * barBox .clientWidth;
+            ctrBar.style.left = lift + 'px';
+            now.style.width=lift + 'px';
+
+
+            if(audio.ended){
+                switch (mode) {
+                    case 0:
+                        index = ++index > data.length - 1 ? 0 : index;
+                        init();
+                        play();
+                        break;
+                    case 1:
+                        init();
+                        play();
+                        break;
+                    case 2:
+
+                        do{
+                            var randomNum = Math.floor(Math.random() * data.length);
+
+                        }while (randomNum === index);
+
+                        index = randomNum;
+                        init();
+                        play();
+                        break;
+
+                }
+
+
+            }
+        });
+
+
+
+
+        barBox.addEventListener('click',function (e) {
+            //鼠标的位置
+            //鼠标点击的对象的相对位置
+            //当前鼠标点击的位置/总宽度 * 音乐总时长 = 当前音乐需要播放的位置
+            audio.currentTime =  e.offsetX / barBox .clientWidth * audio.duration;
+        });
+
+
+    });
+
+
+    //格式化时间格式
+    function formatTime(time) {
+        return time > 9 ? time : '0' + time;
+    }
+
+
+
+    //  window.addEventListener('keydown',function (e) {
+    //    //检测按下了那个键
+    //     console.log(e.keyCode);
+    //     if(e.keyCode == 32){
+    //          play();
+    //      }
+    // })
+</script>
+</body>
+</html>
