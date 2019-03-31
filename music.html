@@ -439,6 +439,17 @@
     });
     //下一曲
     xia.addEventListener('click',function () {
+        console.log(mode);
+        if( mode==2){
+            do{
+                var randomNum = Math.floor(Math.random() * data.length);
+
+            }while (randomNum === index);
+            index = randomNum;
+        }else {
+            index++;
+        }
+
         //三元运算符
         index = ++index > data.length - 1 ? 0 : index;
         audio.src='http://music.163.com/song/media/outer/url?id='+data[index].id+'.mp3';
@@ -469,6 +480,7 @@
                 switch (mode) {
                     case 0:
                         index = ++index > data.length - 1 ? 0 : index;
+                        audio.src='http://music.163.com/song/media/outer/url?id='+data[index].id+'.mp3';
                         init();
                         play();
                         break;
