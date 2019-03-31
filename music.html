@@ -195,7 +195,7 @@
 <body>
 <div class="d">
     <p class="q">欢迎来到Hey音乐</p>
-<input type="text" id="searchTxt" value="我" size="">
+<input type="text" id="searchTxt"  placeholder="请输入歌名" size="">
 <button id="searchBtn">搜索</button>
 
 </div>
@@ -526,14 +526,26 @@
     }
 
 
+    window.addEventListener('keydown',function (e) {
+        //检测按下了那个键
+        //空格
+        console.log(e.keyCode);
+        if(e.keyCode == 32){
+            $('.start').click();
+        }
+    })
 
-    //  window.addEventListener('keydown',function (e) {
-    //    //检测按下了那个键
-    //     console.log(e.keyCode);
-    //     if(e.keyCode == 32){
-    //          play();
-    //      }
-    // })
+
+     window.addEventListener('keydown',function (e) {
+       //检测按下了那个键
+         //回车
+        console.log(e.keyCode);
+        if(e.keyCode == 13){
+             $('#searchBtn').click();
+         }
+    })
+
+   
 </script>
 </body>
 </html>
